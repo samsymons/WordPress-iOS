@@ -24,7 +24,8 @@ class GutenbergWebViewController: GutenbergWebSingleBlockViewController, WebKitA
         }
         url = editorURL
 
-        try super.init(block: block, userId: userId, isWPOrg: !post.blog.isHostedAtWPcom)
+        let preventWPComNuxScript = SourceFile(name: "remove-nux", type: .js)
+        try super.init(block: block, userId: userId, isWPOrg: !post.blog.isHostedAtWPcom, customSources: [preventWPComNuxScript])
     }
 
     required init?(coder aDecoder: NSCoder) {
